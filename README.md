@@ -1,7 +1,8 @@
 # AIQ_challange
 # Prerequsites:  Need to have docker and Mongodb in the system
 
-# How to the code: 
+# How to the RUN code in docker:
+First UNCOMMENT the ENVIROMENT=dockertest and DB_URI/DB_NAME fields for docketest in .env file, then run the following
 - Build Docker image
   - docker build -t aiq-api .
 - Run Docker image
