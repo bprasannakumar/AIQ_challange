@@ -1,0 +1,198 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Matching Api",
+    "version": "1.0.0",
+    "title": "Data Matching API"
+  },
+  "components": {
+    "securitySchemes": {
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": {
+    "basicAuth": []
+  },
+
+  "paths": {
+    "/aiq/version": {
+      "get": {
+        "description": "Check version of API",
+        "tags": [
+          "API version check"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched the version of API",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": "float"
+                    },
+                    "example": {
+                      "version": 0.007
+                    }
+                  }
+                }
+              }
+            }
+          }
+              }
+      }
+    },
+    "/aiq/image/upload": {
+      "post": {
+        "tags": ["Upload and persist image"],
+        "name": "Upload Image",
+        "description": "Uploads an image to the server.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "media": {
+                    "type": "string",
+                    "format": "base64"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "multipart/form-data": {
+              }
+            }
+          }
+          }
+      }
+    },
+    "/aiq/images/{imageId}": {
+      "get": {
+        "description": "Get list of all circular objects for the given imageId",
+        "tags": [
+          "List all circular objects for the given imageId"
+        ],
+        "security": {
+          "basicAuth": []
+        },
+        "parameters": [
+          {
+            "name": "imageId",
+            "in": "path",
+            "required": true,
+            "description": "imageId for which you want list all circular objects",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched all circular objects of the image",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "campaignId": {
+                        "type": "string"
+                      }
+                    },
+                    "example":
+                    [{
+                      "id": "6657418161f84fc5b2d048d4",
+                      "x-cord": null,
+                      "y-cord": null,
+                      "height": 0,
+                      "width": 0
+                    },
+                    {
+                      "id": "6657418161f84fc5b2d048d5",
+                      "x-cord": null,
+                      "y-cord": null,
+                      "height": 0,
+                      "width": 0
+                    },
+                    {
+                      "id": "6657418161f84fc5b2d048d6",
+                      "x-cord": null,
+                      "y-cord": null,
+                      "height": 0,
+                      "width": 0
+                    }]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/aiq/circles/{circleId}": {
+        "get": {
+          "description": "Get details of a circular for the given circleId",
+          "tags": [
+            "Get all details of the given circleId"
+          ],
+          "security": {
+            "basicAuth": []
+          },
+          "parameters": [
+            {
+              "name": "circleId",
+              "in": "path",
+              "required": true,
+              "description": "circleId for which you want all the details",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully fetched all details of the circular object",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "campaignId": {
+                          "type": "string"
+                        }
+                      },
+                      "example":
+                      {
+                        "id": "6657418161f84fc5b2d048d4",
+                        "x-cord": null,
+                        "y-cord": null,
+                        "height": 0,
+                        "width": 0,
+                        "centroid": 0,
+                        "radius": 0
+
+                      }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+
+    }
+
+  }
