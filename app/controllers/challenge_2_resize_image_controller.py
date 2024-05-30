@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import cv2
 import io
+import blosc
 import pymongo
 import pickle
 
@@ -17,17 +18,11 @@ def resize_image():
     object_id = ObjectId()
     img_df = pd.read_csv("data/Challenge2_1.csv")
     img_df = img_df.drop(["depth"], axis=1)
-    image_data = img_df.head().to_numpy()
-    image = np.array(image_data)
+    image = img_df.head().to_numpy()
+    image = np.asarray(image)
     resized_img = cv2.resize(
         image, (200, img_df.shape[0]), interpolation=cv2.INTER_NEAREST
     )
-    byte_stream = io.BytesIO()
-    np.savez(byte_stream, resized_img)
-
-    db_result = aiq_db["images"].insert_one({"_id": object_id, "image": byte_stream})
-    return jsonify(
-        {
-            f"Successfully inserted resized image into images col with id {str(object_id)}"
-        }
-    )
+    compressed_img = blosc.pack_array(resized_img)
+    db_result = aiq_db["images"].insert_one({"image": compressed_img})
+    return jsonify("Successfully inserted resized image into images col")

@@ -49,7 +49,7 @@
     },
     "/aiq/image/upload": {
       "post": {
-        "tags": ["Challange_1 - Upload and persist image"],
+        "tags": ["Challenge_1 - Upload and persist image"],
         "name": "Upload Image",
         "description": "Uploads an image to the server.",
         "requestBody": {
@@ -82,7 +82,7 @@
       "get": {
         "description": "Get list of all circular objects for the given imageId",
         "tags": [
-          "Challange_1 - List all circular objects for the given imageId"
+          "Challenge_1 - List all circular objects for the given imageId"
         ],
         "security": {
           "basicAuth": []
@@ -144,7 +144,7 @@
         "get": {
           "description": " Get details of a circular for the given circleId",
           "tags": [
-            "Challange_1 - Get all details of the given circleId"
+            "Challenge_1 - Get all details of the given circleId"
           ],
           "security": {
             "basicAuth": []
@@ -193,9 +193,9 @@
         },
         "/aiq/image/resize": {
           "post": {
-            "description": "This will take image from the Challange_2.csv file and resize and save image to DB",
+            "description": "This will take image from the Challenge_2.csv file and resize and save image to DB",
             "tags": [
-              "Challange_2 - Read image from CSV, resize and save"
+              "Challenge_2 - Read image from CSV, resize and save"
             ],
             "security": {
               "basicAuth": []
@@ -211,7 +211,7 @@
           "get": {
             "description": "Enter min_depth and max_depth to filter pixels from the image",
             "tags": [
-              "Challange_2 - Filter pixels using min and max depth"
+              "Challenge_2 - Filter pixels using min and max depth"
             ],
             "security": {
               "basicAuth": []
