@@ -9,6 +9,10 @@ from routes.challenge_1_routes import (
     list_circular_objects_route,
     list_circle_details_route,
 )
+from routes.challenge_2_routes import (
+    resize_image_route,
+    get_frames_for_min_max_depth_route,
+)
 
 
 CODE_VERSION = "v1.0.0"
@@ -45,6 +49,12 @@ def check_version():
 api.add_resource(file_handler_route, "/aiq/image/upload")
 api.add_resource(list_circular_objects_route, "/aiq/images/<string:image_id>")
 api.add_resource(list_circle_details_route, "/aiq/circles/<string:circle_id>")
+
+api.add_resource(resize_image_route, "/aiq/image/resize")
+api.add_resource(
+    get_frames_for_min_max_depth_route,
+    "/aiq/image/fetch_frames",
+)
 
 
 app.run(host="0.0.0.0", port=os.getenv("PORT_NUMBER"))
